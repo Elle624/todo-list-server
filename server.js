@@ -36,3 +36,21 @@ app.post('/todo-list', (request, response) => {
       );
   }
 });
+
+app.delete('/todo-list', (request, response) => {
+  const todoListDeets = app.locals.todoList.todoList;
+  const todoItem = request.body;
+  const correctItem = todoListDeets.find((item) => item.id === todoItem.id);
+  if (correctItem) {
+    todoListDeets.filter((item) => item.id !== correctItem.id);
+    response
+      .status(201)
+      .send(`You have removed ${correctItem.id} from your todo list!`);
+  } else {
+    response
+      .status(201)
+      .send(
+        'ID does not match our record, could not remove item from todo list. Please try again.'
+      );
+  }
+});
