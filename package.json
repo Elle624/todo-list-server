@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,5 +17,8 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.6"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": "10.x"
+  }
 }
