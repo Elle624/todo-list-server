@@ -22,7 +22,7 @@ app.get('/todo-list', (request, response) => {
 });
 
 app.post('/todo-list', (request, response) => {
-  const id = 'y' + Date.now();
+  const id = nanoid();
   const todoListDeets = app.locals.todoList.todoList;
   const newTodoItem = request.body;
 
