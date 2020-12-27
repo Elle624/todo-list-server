@@ -39,11 +39,14 @@ app.post('/todo-list', (request, response) => {
 });
 
 app.delete('/todo-list', (request, response) => {
-  const todoListDeets = app.locals.todoList.todoList;
+  let todoListDeets = app.locals.todoList.todoList;
   const todoItem = request.body;
   const correctItem = todoListDeets.find((item) => item.id === todoItem.id);
   if (correctItem) {
-    todoListDeets.filter((item) => item.id !== correctItem.id);
+    const updatedList = todoListDeets.filter(
+      (item) => item.id !== correctItem.id
+    );
+    app.locals.todoList.todoList = updatedList;
     response
       .status(201)
       .send(`You have removed ${correctItem.id} from your todo list!`);
