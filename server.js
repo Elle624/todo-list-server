@@ -19,3 +19,20 @@ app.listen(app.get('port'), () => {
 app.get('/todo-list', (request, response) => {
   response.json(app.locals.todoList);
 });
+
+app.post('/todo-list', (request, response) => {
+  const todoListDeets = app.locals.todoList.todoList;
+  const newTodoItem = request.body;
+  if (newTodoItem.text && newTodoItem.complete) {
+    todoListDeets.push(newTodoItem);
+    response
+      .status(201)
+      .send(`You have added ${newTodoItem.id} to your todo list!`);
+  } else {
+    response
+      .status(201)
+      .send(
+        'Could not add item to todo list because of incomplete information. Please try again.'
+      );
+  }
+});
