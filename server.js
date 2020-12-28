@@ -62,3 +62,19 @@ app.delete('/todo-list', (request, response) => {
       );
   }
 });
+
+app.patch('/todo-list/:id', (request, response) => {
+  const updateTodo = request.body;
+  const { id } = request.params;
+  const correctId = app.locals.todoList.todoList.find((todo) => todo.id === id);
+  if (!correctId) {
+    response.status(202).json('Please enter a correct id#');
+  }
+  const updatedList = app.locals.todoList.todoList.map((todo) =>
+    todo.id === id ? { ...todo, complete: !todo.complete } : todo
+  );
+  app.locals.todoList.todoList = updatedList;
+  response
+    .status(201)
+    .json(`You have updated ${correctItem.id} from your todo list!`);
+});
