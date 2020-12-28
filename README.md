@@ -2,7 +2,7 @@
 
 ## Introduction
 
-[Deployed site](https://todo-list-yl.herokuapp.com/todo-list/todo-list)
+[Deployed site](https://todo-list-yl.herokuapp.com/todo-list)
 </br>
 [Link to clint repo](https://github.com/Elle624/todo-list)
 
