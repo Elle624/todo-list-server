@@ -24,16 +24,19 @@ app.get('/todo-list', (request, response) => {
 app.post('/todo-list', (request, response) => {
   const todoListDeets = app.locals.todoList.todoList;
   const newTodoItem = request.body;
-
-  if (newTodoItem.id && newTodoItem.text && newTodoItem.complete) {
+  if (
+    newTodoItem.id &&
+    newTodoItem.text &&
+    newTodoItem.complete !== undefined
+  ) {
     todoListDeets.push(newTodoItem);
     response
       .status(201)
-      .send(`You have added ${newTodoItem.id} to your todo list!`);
+      .json(`You have added ${newTodoItem.id} to your todo list!`);
   } else {
     response
       .status(201)
-      .send(
+      .json(
         'Could not add item to todo list because of incomplete information. Please try again.'
       );
   }
@@ -50,11 +53,11 @@ app.delete('/todo-list', (request, response) => {
     app.locals.todoList.todoList = updatedList;
     response
       .status(201)
-      .send(`You have removed ${correctItem.id} from your todo list!`);
+      .json(`You have removed ${correctItem.id} from your todo list!`);
   } else {
     response
       .status(201)
-      .send(
+      .json(
         'ID does not match our record, could not remove item from todo list. Please try again.'
       );
   }
