@@ -22,13 +22,14 @@ app.get('/todo-list', (request, response) => {
 });
 
 app.post('/todo-list', (request, response) => {
-  const id = nanoid();
   const todoListDeets = app.locals.todoList.todoList;
   const newTodoItem = request.body;
 
-  if (newTodoItem.text && newTodoItem.complete) {
-    todoListDeets.push({ id, ...newTodoItem });
-    response.status(201).send(`You have added ${id} to your todo list!`);
+  if (newTodoItem.id && newTodoItem.text && newTodoItem.complete) {
+    todoListDeets.push(newTodoItem);
+    response
+      .status(201)
+      .send(`You have added ${newTodoItem.id} to your todo list!`);
   } else {
     response
       .status(201)
